@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐘 분홍코끼리 v2 - 티타임 메뉴 수집</title>
+    <title>🐘 분홍코끼리 - 티타임 메뉴 수집</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
@@ -972,134 +972,6 @@
             font-weight: 600;
             color: var(--elephant-gray);
         }
-
-        /* 추천 메뉴 섹션 */
-        .recommendation-section {
-            background: linear-gradient(135deg, #E8F5E9, #F1F8E9);
-            border: 2px solid var(--mint-accent);
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .recommendation-section h4 {
-            color: #2E7D32;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .recommendation-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .recommendation-item {
-            background: white;
-            border: 2px solid #A5D6A7;
-            border-radius: 12px;
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .recommendation-item:hover {
-            border-color: var(--mint-accent);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2);
-        }
-
-        .recommendation-item .rec-menu {
-            font-weight: 600;
-            color: var(--elephant-gray);
-        }
-
-        .recommendation-item .rec-reason {
-            font-size: 0.8rem;
-            color: #66BB6A;
-            margin-top: 4px;
-        }
-
-        /* 멀티 세션 카드 */
-        .session-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .session-card {
-            background: white;
-            border: 2px solid var(--pink-light);
-            border-radius: 16px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .session-card:hover {
-            border-color: var(--pink-main);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px var(--shadow);
-        }
-
-        .session-card.selected {
-            border-color: var(--pink-main);
-            background: linear-gradient(135deg, var(--pink-pale), white);
-        }
-
-        .session-card .session-cafe {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--pink-dark);
-            margin-bottom: 8px;
-        }
-
-        .session-card .session-target {
-            font-size: 0.9rem;
-            color: var(--elephant-light);
-        }
-
-        .session-card .session-progress {
-            margin-top: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .session-card .session-progress .progress-bar {
-            flex: 1;
-            height: 8px;
-        }
-
-        .session-card .session-progress span {
-            font-size: 0.85rem;
-            color: var(--mint-accent);
-            font-weight: 600;
-        }
-
-        /* 활성 세션 경고 */
-        .session-warning {
-            background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
-            border: 2px solid #FFB74D;
-            border-radius: 12px;
-            padding: 15px 20px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .session-warning .warning-icon {
-            font-size: 1.5rem;
-        }
-
-        .session-warning .warning-text {
-            color: #E65100;
-            font-weight: 500;
-        }
     </style>
 </head>
 <body>
@@ -1108,8 +980,8 @@
             <div class="logo-container">
                 <div class="elephant-logo"></div>
             </div>
-            <h1>분홍코끼리 <span style="font-size: 0.5em; background: var(--mint-accent); color: white; padding: 4px 12px; border-radius: 20px; vertical-align: middle;">v2</span></h1>
-            <p>전사 & 팀별 티타임 메뉴 수집 · 멀티세션 & 메뉴추천 지원</p>
+            <h1>분홍코끼리</h1>
+            <p>전사 & 팀별 티타임 메뉴 수집</p>
         </header>
 
         <nav class="nav-tabs">
@@ -1128,13 +1000,6 @@
                 </div>
             </div>
 
-            <!-- 멀티 세션 선택 -->
-            <div id="multi-session-select" class="card hidden">
-                <h3 class="card-title">진행 중인 티타임 세션</h3>
-                <p style="color: var(--elephant-light); margin-bottom: 15px;">참여할 티타임을 선택하세요.</p>
-                <div class="session-cards" id="session-cards"></div>
-            </div>
-
             <div id="order-active" class="hidden">
                 <div class="session-info" id="current-session-info">
                     <div class="cafe-logo">☕</div>
@@ -1144,9 +1009,6 @@
                         <a href="#" id="session-cafe-link" class="cafe-link hidden" target="_blank">
                             📍 카페 정보 보기
                         </a>
-                    </div>
-                    <div class="session-actions">
-                        <button class="btn" onclick="backToSessionList()">← 다른 세션 선택</button>
                     </div>
                 </div>
 
@@ -1160,12 +1022,6 @@
 
                 <div class="card hidden" id="menu-selection-card">
                     <h3 class="card-title"><span id="selected-member-name"></span>님의 메뉴를 선택하세요</h3>
-                    
-                    <!-- 추천 메뉴 섹션 -->
-                    <div class="recommendation-section hidden" id="recommendation-section">
-                        <h4>🎯 <span id="selected-member-name-rec"></span>님을 위한 추천 메뉴</h4>
-                        <div class="recommendation-list" id="recommendation-list"></div>
-                    </div>
                     
                     <div class="category-tabs" id="category-tabs"></div>
                     
@@ -1238,18 +1094,6 @@
 
         <!-- Admin Section -->
         <section id="admin-section" class="tab-content hidden">
-            <!-- 활성 세션 경고 -->
-            <div id="active-sessions-warning" class="session-warning hidden">
-                <span class="warning-icon">⚠️</span>
-                <span class="warning-text" id="warning-text">현재 진행 중인 세션이 있습니다. 같은 대상으로는 새 세션을 시작할 수 없습니다.</span>
-            </div>
-
-            <!-- 현재 활성 세션 목록 -->
-            <div class="card" id="active-sessions-list" style="display: none;">
-                <h3 class="card-title">현재 진행 중인 세션</h3>
-                <div class="session-cards" id="admin-session-cards"></div>
-            </div>
-
             <div class="card">
                 <h3 class="card-title">새 티타임 세션 만들기</h3>
 
@@ -1313,6 +1157,13 @@
                 </div>
             </div>
 
+            <div class="card" id="active-session-card" style="display: none;">
+                <h3 class="card-title">현재 진행 중인 세션</h3>
+                <div id="active-session-details"></div>
+                <div style="margin-top: 20px;">
+                    <button class="btn btn-danger" onclick="endSession()">🛑 세션 종료</button>
+                </div>
+            </div>
         </section>
 
         <!-- Summary Section -->
@@ -1365,7 +1216,6 @@
     <script>
         // API Base URL
         const API_BASE = '/api';
-        const API_V2 = '/api';  // v2 API endpoints: /api/sessions, /api/history
         
         // Company data
         const teams = {
@@ -1763,8 +1613,7 @@
         };
 
         // State
-        let sessions = [];  // 모든 활성 세션
-        let currentSession = null;  // 현재 선택된 세션
+        let currentSession = null;
         let orders = [];
         let selectedMember = null;
         let selectedMenu = null;
@@ -1773,7 +1622,6 @@
         let currentCategory = null;
         let currentTeamFilter = 'all';
         let summaryTeamFilter = 'all';
-        let recommendations = [];  // 추천 메뉴
 
         // Initialize
         async function init() {
@@ -1788,27 +1636,21 @@
             }, 5000);
         }
 
-        // Load state from API (Cloudflare KV) - v2: 멀티 세션 지원
+        // Load state from API (Cloudflare KV)
         async function loadState() {
             try {
-                // 모든 활성 세션 가져오기
-                const sessionsRes = await fetch(`${API_V2}/sessions`);
-                const sessionsData = await sessionsRes.json();
-                if (sessionsData.success) {
-                    sessions = sessionsData.sessions || [];
-                    
-                    // 현재 선택된 세션이 있으면 업데이트
-                    if (currentSession) {
-                        const updatedSession = sessions.find(s => s.id === currentSession.id);
-                        if (updatedSession) {
-                            currentSession = updatedSession;
-                            orders = currentSession.orders || [];
-                        } else {
-                            // 세션이 종료됨
-                            currentSession = null;
-                            orders = [];
-                        }
-                    }
+                // 세션 데이터 가져오기
+                const sessionRes = await fetch(`${API_BASE}/session`);
+                const sessionData = await sessionRes.json();
+                if (sessionData.success) {
+                    currentSession = sessionData.session;
+                }
+                
+                // 주문 데이터 가져오기
+                const ordersRes = await fetch(`${API_BASE}/orders`);
+                const ordersData = await ordersRes.json();
+                if (ordersData.success) {
+                    orders = ordersData.orders || [];
                 }
             } catch (error) {
                 console.error('Failed to load state:', error);
@@ -1878,33 +1720,16 @@
             updateSummary();
         }
 
-        // Update order section - v2: 멀티 세션 지원
+        // Update order section
         function updateOrderSection() {
-            const noSessionMsg = document.getElementById('no-session-message');
-            const multiSessionSelect = document.getElementById('multi-session-select');
-            const orderActive = document.getElementById('order-active');
-            
-            if (sessions.length === 0) {
-                // 진행 중인 세션 없음
-                noSessionMsg.classList.remove('hidden');
-                multiSessionSelect.classList.add('hidden');
-                orderActive.classList.add('hidden');
-                return;
-            }
-            
-            noSessionMsg.classList.add('hidden');
-            
             if (!currentSession) {
-                // 세션 선택 화면 표시
-                multiSessionSelect.classList.remove('hidden');
-                orderActive.classList.add('hidden');
-                updateSessionCards();
+                document.getElementById('no-session-message').classList.remove('hidden');
+                document.getElementById('order-active').classList.add('hidden');
                 return;
             }
-            
-            // 세션 선택됨 - 주문 화면 표시
-            multiSessionSelect.classList.add('hidden');
-            orderActive.classList.remove('hidden');
+
+            document.getElementById('no-session-message').classList.add('hidden');
+            document.getElementById('order-active').classList.remove('hidden');
 
             const cafe = cafeMenus[currentSession.cafe];
             document.getElementById('session-cafe-name').textContent = cafe.icon + ' ' + cafe.name;
@@ -1922,39 +1747,6 @@
 
             updateTeamFilter();
             updateMemberGrid();
-        }
-        
-        // 세션 카드 목록 업데이트
-        function updateSessionCards() {
-            const container = document.getElementById('session-cards');
-            container.innerHTML = sessions.map(session => {
-                const cafe = cafeMenus[session.cafe];
-                const orderCount = session.orders?.length || 0;
-                const totalMembers = session.target === 'all' ? 42 : teams[session.target]?.length || 0;
-                const progress = totalMembers > 0 ? (orderCount / totalMembers * 100) : 0;
-                
-                return `
-                    <div class="session-card" onclick="selectSession('${session.id}')">
-                        <div class="session-cafe">${cafe.icon} ${cafe.name}</div>
-                        <div class="session-target">${session.target === 'all' ? '🏢 전사' : teamIcons[session.target] + ' ' + session.target}</div>
-                        <div class="session-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: ${progress}%"></div>
-                            </div>
-                            <span>${orderCount}/${totalMembers}명</span>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-        
-        // 세션 선택
-        function selectSession(sessionId) {
-            currentSession = sessions.find(s => s.id === sessionId);
-            if (currentSession) {
-                orders = currentSession.orders || [];
-                updateUI();
-            }
         }
 
         // Update team filter
@@ -2016,8 +1808,8 @@
             });
         }
 
-        // Select member - v2: 추천 메뉴 기능 추가
-        async function selectMember(member, team) {
+        // Select member
+        function selectMember(member, team) {
             selectedMember = { name: member, team: team };
             selectedMenu = null;
             selectedTemp = 'hot';
@@ -2035,7 +1827,6 @@
             document.getElementById('member-selection-card').classList.add('hidden');
             document.getElementById('menu-selection-card').classList.remove('hidden');
             document.getElementById('selected-member-name').textContent = member;
-            document.getElementById('selected-member-name-rec').textContent = member;
             document.getElementById('order-note').value = '';
             document.getElementById('custom-menu-input').value = '';
             document.getElementById('selection-summary').style.display = 'none';
@@ -2045,49 +1836,6 @@
             
             updateCategoryTabs(categories);
             updateMenuGrid();
-            
-            // 추천 메뉴 가져오기
-            await loadRecommendations(member, currentSession.cafe);
-        }
-        
-        // 추천 메뉴 로드
-        async function loadRecommendations(member, cafe) {
-            const recSection = document.getElementById('recommendation-section');
-            const recList = document.getElementById('recommendation-list');
-            
-            try {
-                const res = await fetch(`${API_V2}/history?member=${encodeURIComponent(member)}&cafe=${cafe}`);
-                const data = await res.json();
-                
-                if (data.success && data.recommendations && data.recommendations.length > 0) {
-                    recommendations = data.recommendations;
-                    
-                    recList.innerHTML = recommendations.map((rec, index) => `
-                        <div class="recommendation-item" onclick="selectRecommendation(${index})">
-                            <div class="rec-menu">${rec.menu}</div>
-                            <div class="rec-reason">${rec.reason}</div>
-                        </div>
-                    `).join('');
-                    
-                    recSection.classList.remove('hidden');
-                } else {
-                    recSection.classList.add('hidden');
-                }
-            } catch (error) {
-                console.error('Failed to load recommendations:', error);
-                recSection.classList.add('hidden');
-            }
-        }
-        
-        // 추천 메뉴 선택
-        function selectRecommendation(index) {
-            const rec = recommendations[index];
-            if (rec) {
-                selectedMenu = { name: rec.menu, icon: '🎯', isCustom: false };
-                updateMenuGrid();
-                updateSelectionSummary();
-                showToast(`추천 메뉴 '${rec.menu}'가 선택되었습니다!`);
-            }
         }
 
         // Update size options based on cafe
@@ -2207,24 +1955,12 @@
         function cancelOrder() {
             selectedMember = null;
             selectedMenu = null;
-            recommendations = [];
             document.getElementById('member-selection-card').classList.remove('hidden');
             document.getElementById('menu-selection-card').classList.add('hidden');
-            document.getElementById('recommendation-section').classList.add('hidden');
             updateMemberGrid();
         }
-        
-        // 세션 목록으로 돌아가기
-        function backToSessionList() {
-            currentSession = null;
-            orders = [];
-            selectedMember = null;
-            selectedMenu = null;
-            recommendations = [];
-            updateUI();
-        }
 
-        // Submit order - v2: 세션별 주문 저장
+        // Submit order
         async function submitOrder() {
             if (!selectedMenu) {
                 showToast('메뉴를 선택해주세요');
@@ -2237,7 +1973,6 @@
                 member: selectedMember.name,
                 team: selectedMember.team,
                 menu: selectedMenu.name,
-                cafe: currentSession.cafe,  // 카페 정보 추가 (이력 저장용)
                 isCustomMenu: selectedMenu.isCustom || false,
                 temp: selectedTemp,
                 size: selectedSize,
@@ -2246,21 +1981,16 @@
             };
             
             try {
-                const res = await fetch(`${API_V2}/sessions`, {
+                const res = await fetch(`${API_BASE}/orders`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        action: 'addOrder', 
-                        sessionId: currentSession.id,
-                        order: order 
-                    })
+                    body: JSON.stringify({ action: 'add', order: order })
                 });
                 
                 const data = await res.json();
                 
                 if (data.success) {
                     orders = data.orders;
-                    currentSession.orders = orders;
                     showToast(`${selectedMember.name}님의 주문이 완료되었습니다`);
                     
                     selectedMember = null;
@@ -2277,7 +2007,7 @@
             }
         }
 
-        // Admin functions - v2: 멀티 세션 지원
+        // Admin functions
         async function startSession() {
             const cafeSelect = document.getElementById('cafe-select');
             const selectedTarget = document.querySelector('#target-selection .team-option.selected');
@@ -2294,7 +2024,7 @@
             };
             
             try {
-                const res = await fetch(`${API_V2}/sessions`, {
+                const res = await fetch(`${API_BASE}/session`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ action: 'start', session: session })
@@ -2303,8 +2033,7 @@
                 const data = await res.json();
                 
                 if (data.success) {
-                    await loadState();
-                    currentSession = data.session;
+                    currentSession = session;
                     orders = [];
                     updateUI();
                     showToast('🐘 티타임 세션이 시작되었습니다!');
@@ -2312,7 +2041,7 @@
                     // Switch to order tab
                     document.querySelector('.nav-tab[data-tab="order"]').click();
                 } else {
-                    showToast(data.error || '세션 시작에 실패했습니다.');
+                    showToast('세션 시작에 실패했습니다.');
                 }
             } catch (error) {
                 console.error('Session start error:', error);
@@ -2326,29 +2055,19 @@
             document.querySelector('#target-selection .team-option[data-target="all"]').classList.add('selected');
         }
 
-        async function endSession(sessionId) {
-            const targetSessionId = sessionId || currentSession?.id;
-            if (!targetSessionId) {
-                showToast('종료할 세션이 없습니다.');
-                return;
-            }
-            
+        async function endSession() {
             if (confirm('세션을 종료하시겠습니까? 주문 기록은 유지됩니다.')) {
                 try {
-                    const res = await fetch(`${API_V2}/sessions`, {
+                    const res = await fetch(`${API_BASE}/session`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ action: 'end', sessionId: targetSessionId })
+                        body: JSON.stringify({ action: 'end' })
                     });
                     
                     const data = await res.json();
                     
                     if (data.success) {
-                        if (currentSession?.id === targetSessionId) {
-                            currentSession = null;
-                            orders = [];
-                        }
-                        await loadState();
+                        currentSession = null;
                         updateUI();
                         showToast('세션이 종료되었습니다');
                     } else {
@@ -2362,77 +2081,48 @@
         }
 
         function updateAdminSection() {
-            const warningDiv = document.getElementById('active-sessions-warning');
-            const activeListDiv = document.getElementById('active-sessions-list');
-            const adminCards = document.getElementById('admin-session-cards');
+            const activeCard = document.getElementById('active-session-card');
             
-            if (sessions.length > 0) {
-                // 활성 세션 경고 표시
-                warningDiv.classList.remove('hidden');
-                const targetNames = sessions.map(s => s.target === 'all' ? '전사' : s.target).join(', ');
-                document.getElementById('warning-text').textContent = 
-                    `현재 진행 중인 세션: ${targetNames}. 같은 대상으로는 새 세션을 시작할 수 없습니다.`;
+            if (currentSession) {
+                activeCard.style.display = 'block';
+                const cafe = cafeMenus[currentSession.cafe];
+                const targetText = currentSession.target === 'all' ? '전사' : currentSession.target;
                 
-                // 활성 세션 목록 표시
-                activeListDiv.style.display = 'block';
-                adminCards.innerHTML = sessions.map(session => {
-                    const cafe = cafeMenus[session.cafe];
-                    const orderCount = session.orders?.length || 0;
-                    const totalMembers = session.target === 'all' ? 42 : teams[session.target]?.length || 0;
-                    const progress = totalMembers > 0 ? (orderCount / totalMembers * 100) : 0;
-                    
-                    return `
-                        <div class="session-card">
-                            <div class="session-cafe">${cafe.icon} ${cafe.name}</div>
-                            <div class="session-target">${session.target === 'all' ? '🏢 전사' : teamIcons[session.target] + ' ' + session.target}</div>
-                            <div class="session-progress">
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: ${progress}%"></div>
-                                </div>
-                                <span>${orderCount}/${totalMembers}명</span>
-                            </div>
-                            <button class="btn btn-danger" style="margin-top: 15px; width: 100%;" onclick="endSession('${session.id}')">
-                                🛑 세션 종료
-                            </button>
+                document.getElementById('active-session-details').innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <span style="font-size: 2.5rem;">${cafe.icon}</span>
+                        <div>
+                            <h4 style="margin-bottom: 5px; color: var(--pink-dark);">${cafe.name}</h4>
+                            <p style="color: var(--elephant-light);">대상: ${targetText}</p>
+                            ${cafe.link ? `<a href="${cafe.link}" target="_blank" class="cafe-link">📍 카페 정보</a>` : ''}
                         </div>
-                    `;
-                }).join('');
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${getOrderProgress()}%"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span>주문 완료: ${orders.length}명</span>
+                            <span>${getOrderProgress().toFixed(0)}%</span>
+                        </div>
+                    </div>
+                `;
             } else {
-                warningDiv.classList.add('hidden');
-                activeListDiv.style.display = 'none';
+                activeCard.style.display = 'none';
             }
         }
 
-        function getOrderProgress(session = null) {
-            const targetSession = session || currentSession;
-            if (!targetSession) return 0;
-            const targetOrders = session ? (session.orders || []) : orders;
-            const totalMembers = targetSession.target === 'all' 
+        function getOrderProgress() {
+            if (!currentSession) return 0;
+            const totalMembers = currentSession.target === 'all' 
                 ? 42 
-                : (teams[targetSession.target]?.length || 0);
-            return totalMembers > 0 ? (targetOrders.length / totalMembers) * 100 : 0;
+                : teams[currentSession.target].length;
+            return (orders.length / totalMembers) * 100;
         }
 
-        // Summary functions - v2: 멀티 세션 지원
+        // Summary functions
         function updateSummary() {
-            // 모든 세션의 주문을 합쳐서 표시
-            let allOrders = [];
-            sessions.forEach(session => {
-                if (session.orders) {
-                    session.orders.forEach(order => {
-                        allOrders.push({
-                            ...order,
-                            sessionCafe: session.cafe,
-                            sessionTarget: session.target
-                        });
-                    });
-                }
-            });
-            
-            // 현재 세션이 선택되어 있으면 해당 세션 주문만 표시
-            const displayOrders = currentSession ? orders : allOrders;
-            
-            if (displayOrders.length === 0 && sessions.length === 0) {
+            if (orders.length === 0) {
                 document.getElementById('no-orders-message').classList.remove('hidden');
                 document.getElementById('summary-content').classList.add('hidden');
                 return;
@@ -2441,41 +2131,36 @@
             document.getElementById('no-orders-message').classList.add('hidden');
             document.getElementById('summary-content').classList.remove('hidden');
 
-            updateStats(displayOrders);
-            updateMenuSummary(displayOrders);
+            updateStats();
+            updateMenuSummary();
             updateSummaryTeamFilter();
-            updateOrderTable(displayOrders);
+            updateOrderTable();
         }
 
-        function updateStats(displayOrders) {
-            const orderList = displayOrders || orders;
-            const progress = currentSession ? getOrderProgress() : 
-                (sessions.length > 0 ? sessions.reduce((sum, s) => sum + getOrderProgress(s), 0) / sessions.length : 0);
-            
+        function updateStats() {
             document.getElementById('stats-grid').innerHTML = `
                 <div class="stat-card">
-                    <div class="stat-value">${orderList.length}</div>
+                    <div class="stat-value">${orders.length}</div>
                     <div class="stat-label">주문 완료</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">${orderList.filter(o => o.temp === 'hot').length}</div>
+                    <div class="stat-value">${orders.filter(o => o.temp === 'hot').length}</div>
                     <div class="stat-label">🔥 HOT</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">${orderList.filter(o => o.temp === 'ice').length}</div>
+                    <div class="stat-value">${orders.filter(o => o.temp === 'ice').length}</div>
                     <div class="stat-label">🧊 ICE</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">${progress.toFixed(0)}%</div>
+                    <div class="stat-value">${getOrderProgress().toFixed(0)}%</div>
                     <div class="stat-label">참여율</div>
                 </div>
             `;
         }
 
-        function updateMenuSummary(displayOrders) {
-            const orderList = displayOrders || orders;
+        function updateMenuSummary() {
             const menuCount = {};
-            orderList.forEach(o => {
+            orders.forEach(o => {
                 const tempText = o.temp === 'hot' ? 'HOT' : 'ICE';
                 const key = `${o.menu} (${tempText}, ${o.size})`;
                 if (!menuCount[key]) {
@@ -2521,16 +2206,15 @@
             });
         }
 
-        function updateOrderTable(displayOrders) {
-            const orderList = displayOrders || orders;
+        function updateOrderTable() {
             const filtered = summaryTeamFilter === 'all' 
-                ? orderList 
-                : orderList.filter(o => o.team === summaryTeamFilter);
+                ? orders 
+                : orders.filter(o => o.team === summaryTeamFilter);
 
             document.getElementById('order-table-body').innerHTML = filtered.map(order => `
                 <tr>
                     <td><strong>${order.member}</strong></td>
-                    <td><span class="team-badge">${teamIcons[order.team] || '👤'} ${order.team}</span></td>
+                    <td><span class="team-badge">${teamIcons[order.team]} ${order.team}</span></td>
                     <td>${order.isCustomMenu ? '✨ ' : ''}${order.menu}</td>
                     <td>
                         <span class="option-badge ${order.temp}">${order.temp === 'hot' ? '🔥 HOT' : '🧊 ICE'}</span>
@@ -2542,27 +2226,13 @@
         }
 
         function exportOrders() {
-            // 내보낼 주문 목록 결정
-            let exportOrderList = [];
-            
-            if (currentSession) {
-                exportOrderList = orders;
-            } else {
-                // 모든 세션의 주문 합치기
-                sessions.forEach(session => {
-                    if (session.orders) {
-                        exportOrderList = exportOrderList.concat(session.orders);
-                    }
-                });
-            }
-            
-            if (exportOrderList.length === 0) {
+            if (orders.length === 0) {
                 showToast('내보낼 주문이 없습니다');
                 return;
             }
 
             // Create summary text
-            let text = '🐘 분홍코끼리 v2 티타임 주문 현황\n';
+            let text = '🐘 분홍코끼리 티타임 주문 현황\n';
             text += '='.repeat(40) + '\n\n';
             
             if (currentSession) {
@@ -2572,18 +2242,11 @@
                     text += `카페 정보: ${cafe.link}\n`;
                 }
                 text += `대상: ${currentSession.target === 'all' ? '전사' : currentSession.target}\n\n`;
-            } else {
-                text += `활성 세션: ${sessions.length}개\n`;
-                sessions.forEach(s => {
-                    const cafe = cafeMenus[s.cafe];
-                    text += `  - ${cafe.name} (${s.target === 'all' ? '전사' : s.target})\n`;
-                });
-                text += '\n';
             }
 
             // Menu summary
             const menuCount = {};
-            exportOrderList.forEach(o => {
+            orders.forEach(o => {
                 const key = `${o.menu} (${o.temp === 'hot' ? 'HOT' : 'ICE'}, ${o.size})`;
                 if (!menuCount[key]) {
                     menuCount[key] = 0;
@@ -2602,7 +2265,7 @@
             
             // Group by team
             const byTeam = {};
-            exportOrderList.forEach(o => {
+            orders.forEach(o => {
                 if (!byTeam[o.team]) byTeam[o.team] = [];
                 byTeam[o.team].push(o);
             });
@@ -2617,7 +2280,7 @@
             });
 
             text += '\n' + '='.repeat(40) + '\n';
-            text += `총 ${exportOrderList.length}명 (HOT: ${exportOrderList.filter(o => o.temp === 'hot').length}, ICE: ${exportOrderList.filter(o => o.temp === 'ice').length})`;
+            text += `총 ${orders.length}명 (HOT: ${orders.filter(o => o.temp === 'hot').length}, ICE: ${orders.filter(o => o.temp === 'ice').length})`;
 
             // Copy to clipboard
             navigator.clipboard.writeText(text).then(() => {
