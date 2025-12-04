@@ -1791,11 +1791,20 @@
         // Load state from API (Cloudflare KV) - v2: 멀티 세션 지원
         async function loadState() {
             try {
-                // 모든 활성 세션 가져오기
+                console.log('[v2] Loading sessions...');
                 const sessionsRes = await fetch(`${API_V2}/sessions`);
+                
+                if (!sessionsRes.ok) {
+                    console.error('[v2] API HTTP error:', sessionsRes.status);
+                    return;
+                }
+                
                 const sessionsData = await sessionsRes.json();
+                console.log('[v2] API response:', sessionsData);
+                
                 if (sessionsData.success) {
                     sessions = sessionsData.sessions || [];
+                    console.log('[v2] Active sessions:', sessions.length);
                     
                     // 현재 선택된 세션이 있으면 업데이트
                     if (currentSession) {
@@ -1809,9 +1818,11 @@
                             orders = [];
                         }
                     }
+                } else {
+                    console.error('[v2] API error:', sessionsData.error);
                 }
             } catch (error) {
-                console.error('Failed to load state:', error);
+                console.error('[v2] Failed to load state:', error);
             }
         }
 
