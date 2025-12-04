@@ -1214,6 +1214,9 @@
     </div>
 
     <script>
+        // API Base URL
+        const API_BASE = '/api';
+        
         // Company data
         const teams = {
             "이사진": ["하근호", "김상철", "김덕조", "김도형", "이호재"],
@@ -1621,29 +1624,43 @@
         let summaryTeamFilter = 'all';
 
         // Initialize
-        function init() {
-            loadState();
+        async function init() {
+            await loadState();
             setupEventListeners();
             updateUI();
-        }
-
-        // Load state from localStorage
-        function loadState() {
-            const savedSession = localStorage.getItem('pinkElephantSession');
-            const savedOrders = localStorage.getItem('pinkElephantOrders');
             
-            if (savedSession) {
-                currentSession = JSON.parse(savedSession);
-            }
-            if (savedOrders) {
-                orders = JSON.parse(savedOrders);
+            // 5초마다 데이터 새로고침 (다른 사람의 주문 확인)
+            setInterval(async () => {
+                await loadState();
+                updateUI();
+            }, 5000);
+        }
+
+        // Load state from API (Cloudflare KV)
+        async function loadState() {
+            try {
+                // 세션 데이터 가져오기
+                const sessionRes = await fetch(`${API_BASE}/session`);
+                const sessionData = await sessionRes.json();
+                if (sessionData.success) {
+                    currentSession = sessionData.session;
+                }
+                
+                // 주문 데이터 가져오기
+                const ordersRes = await fetch(`${API_BASE}/orders`);
+                const ordersData = await ordersRes.json();
+                if (ordersData.success) {
+                    orders = ordersData.orders || [];
+                }
+            } catch (error) {
+                console.error('Failed to load state:', error);
             }
         }
 
-        // Save state to localStorage
+        // Save state - 이제 개별 API 호출로 처리됨
         function saveState() {
-            localStorage.setItem('pinkElephantSession', JSON.stringify(currentSession));
-            localStorage.setItem('pinkElephantOrders', JSON.stringify(orders));
+            // 더 이상 localStorage 사용 안함
+            // 각 액션에서 직접 API 호출
         }
 
         // Setup event listeners
@@ -1944,18 +1961,15 @@
         }
 
         // Submit order
-        function submitOrder() {
+        async function submitOrder() {
             if (!selectedMenu) {
                 showToast('메뉴를 선택해주세요');
                 return;
             }
 
-            // Remove existing order for this member
-            orders = orders.filter(o => o.member !== selectedMember.name);
-            
             const note = document.getElementById('order-note').value.trim();
             
-            orders.push({
+            const order = {
                 member: selectedMember.name,
                 team: selectedMember.team,
                 menu: selectedMenu.name,
@@ -1964,20 +1978,37 @@
                 size: selectedSize,
                 note: note,
                 timestamp: new Date().toISOString()
-            });
+            };
             
-            saveState();
-            showToast(`${selectedMember.name}님의 주문이 완료되었습니다`);
-            
-            selectedMember = null;
-            selectedMenu = null;
-            document.getElementById('member-selection-card').classList.remove('hidden');
-            document.getElementById('menu-selection-card').classList.add('hidden');
-            updateMemberGrid();
+            try {
+                const res = await fetch(`${API_BASE}/orders`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'add', order: order })
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    orders = data.orders;
+                    showToast(`${selectedMember.name}님의 주문이 완료되었습니다`);
+                    
+                    selectedMember = null;
+                    selectedMenu = null;
+                    document.getElementById('member-selection-card').classList.remove('hidden');
+                    document.getElementById('menu-selection-card').classList.add('hidden');
+                    updateMemberGrid();
+                } else {
+                    showToast('주문 저장에 실패했습니다. 다시 시도해주세요.');
+                }
+            } catch (error) {
+                console.error('Order submit error:', error);
+                showToast('네트워크 오류가 발생했습니다.');
+            }
         }
 
         // Admin functions
-        function startSession() {
+        async function startSession() {
             const cafeSelect = document.getElementById('cafe-select');
             const selectedTarget = document.querySelector('#target-selection .team-option.selected');
             
@@ -1986,19 +2017,36 @@
                 return;
             }
             
-            currentSession = {
+            const session = {
                 cafe: cafeSelect.value,
                 target: selectedTarget.dataset.target,
                 startTime: new Date().toISOString()
             };
             
-            orders = [];
-            saveState();
-            updateUI();
-            showToast('🐘 티타임 세션이 시작되었습니다!');
-            
-            // Switch to order tab
-            document.querySelector('.nav-tab[data-tab="order"]').click();
+            try {
+                const res = await fetch(`${API_BASE}/session`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: 'start', session: session })
+                });
+                
+                const data = await res.json();
+                
+                if (data.success) {
+                    currentSession = session;
+                    orders = [];
+                    updateUI();
+                    showToast('🐘 티타임 세션이 시작되었습니다!');
+                    
+                    // Switch to order tab
+                    document.querySelector('.nav-tab[data-tab="order"]').click();
+                } else {
+                    showToast('세션 시작에 실패했습니다.');
+                }
+            } catch (error) {
+                console.error('Session start error:', error);
+                showToast('네트워크 오류가 발생했습니다.');
+            }
         }
 
         function resetSession() {
@@ -2007,12 +2055,28 @@
             document.querySelector('#target-selection .team-option[data-target="all"]').classList.add('selected');
         }
 
-        function endSession() {
+        async function endSession() {
             if (confirm('세션을 종료하시겠습니까? 주문 기록은 유지됩니다.')) {
-                currentSession = null;
-                saveState();
-                updateUI();
-                showToast('세션이 종료되었습니다');
+                try {
+                    const res = await fetch(`${API_BASE}/session`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'end' })
+                    });
+                    
+                    const data = await res.json();
+                    
+                    if (data.success) {
+                        currentSession = null;
+                        updateUI();
+                        showToast('세션이 종료되었습니다');
+                    } else {
+                        showToast('세션 종료에 실패했습니다.');
+                    }
+                } catch (error) {
+                    console.error('Session end error:', error);
+                    showToast('네트워크 오류가 발생했습니다.');
+                }
             }
         }
 

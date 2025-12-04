@@ -1,0 +1,8 @@
+name = "young2eun"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "./"
+
+[[kv_namespaces]]
+binding = "KV"
+id = "d7b38809c2d549108d2302522b7b4b9a"
+
