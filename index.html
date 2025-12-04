@@ -1,0 +1,2254 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐘 분홍코끼리 - 티타임 메뉴 수집</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-dark: #C71585;
+            --pink-main: #E91E8C;
+            --pink-medium: #F48FB1;
+            --pink-light: #FCE4EC;
+            --pink-pale: #FFF0F5;
+            --pink-white: #FFFAFA;
+            --elephant-gray: #4A4A4A;
+            --elephant-light: #757575;
+            --mint-accent: #4ECDC4;
+            --coral-accent: #FF6B6B;
+            --gold-accent: #FFD93D;
+            --shadow: rgba(233, 30, 140, 0.15);
+            --shadow-dark: rgba(199, 21, 133, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, var(--pink-pale) 0%, var(--pink-white) 30%, #FFF5F8 70%, var(--pink-light) 100%);
+            min-height: 100vh;
+            color: var(--elephant-gray);
+        }
+
+        /* Animated Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(233, 30, 140, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(78, 205, 196, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(244, 143, 177, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            animation: bgFloat 20s ease-in-out infinite;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header with Elephant Logo */
+        header {
+            text-align: center;
+            padding: 30px 20px 40px;
+            margin-bottom: 20px;
+        }
+
+        .logo-container {
+            display: inline-block;
+            margin-bottom: 15px;
+            animation: elephantBounce 3s ease-in-out infinite;
+        }
+
+        @keyframes elephantBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .elephant-logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 10px 30px var(--shadow-dark),
+                inset 0 -5px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .elephant-logo::before {
+            content: '🐘';
+            font-size: 60px;
+            filter: brightness(1.1) saturate(1.2);
+        }
+
+        .elephant-logo::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            right: 15px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.4);
+            border-radius: 50%;
+        }
+
+        header h1 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--pink-dark), var(--pink-main), var(--coral-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            color: var(--elephant-light);
+            font-size: 1.05rem;
+            font-weight: 400;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 14px 30px;
+            border: none;
+            background: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--elephant-light);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px var(--shadow);
+            font-family: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-tab:hover::before {
+            left: 100%;
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--shadow-dark);
+            color: var(--pink-main);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
+            color: white;
+            box-shadow: 0 6px 20px var(--shadow-dark);
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 40px var(--shadow);
+            margin-bottom: 20px;
+            animation: slideUp 0.5s ease;
+            border: 1px solid rgba(244, 143, 177, 0.2);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--pink-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(to bottom, var(--pink-main), var(--mint-accent));
+            border-radius: 2px;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--pink-dark);
+            margin-bottom: 8px;
+        }
+
+        select, input[type="text"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--pink-light);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--pink-white);
+        }
+
+        select:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--pink-main);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(233, 30, 140, 0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
+            color: white;
+            box-shadow: 0 4px 15px var(--shadow-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow-dark);
+        }
+
+        .btn-secondary {
+            background: var(--pink-light);
+            color: var(--pink-dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--pink-medium);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, var(--mint-accent), #3BA99C);
+            color: white;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, var(--coral-accent), #E55555);
+            color: white;
+        }
+
+        /* Team Selection Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .team-option {
+            padding: 18px;
+            border: 2px solid var(--pink-light);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: var(--pink-white);
+        }
+
+        .team-option:hover {
+            border-color: var(--pink-medium);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px var(--shadow);
+        }
+
+        .team-option.selected {
+            border-color: var(--pink-main);
+            background: linear-gradient(135deg, var(--pink-light), white);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .team-option .team-name {
+            font-weight: 600;
+            color: var(--pink-dark);
+            margin-bottom: 5px;
+        }
+
+        .team-option .member-count {
+            font-size: 0.85rem;
+            color: var(--elephant-light);
+        }
+
+        /* Member Grid */
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .member-card {
+            padding: 16px 12px;
+            border: 2px solid var(--pink-light);
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .member-card:hover {
+            border-color: var(--pink-medium);
+            transform: scale(1.03);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .member-card.selected {
+            border-color: var(--pink-main);
+            background: linear-gradient(135deg, var(--pink-light), white);
+        }
+
+        .member-card.ordered {
+            border-color: var(--mint-accent);
+            background: linear-gradient(135deg, #E0F7F5, white);
+        }
+
+        .member-card .member-name {
+            font-weight: 600;
+            color: var(--elephant-gray);
+        }
+
+        .member-card .member-team {
+            font-size: 0.75rem;
+            color: var(--elephant-light);
+            margin-top: 4px;
+        }
+
+        .member-card .order-status {
+            font-size: 0.75rem;
+            margin-top: 6px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+        }
+
+        .member-card .order-status.pending {
+            background: var(--pink-light);
+            color: var(--pink-dark);
+        }
+
+        .member-card .order-status.complete {
+            background: var(--mint-accent);
+            color: white;
+        }
+
+        /* Menu Grid */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+        }
+
+        .menu-item {
+            padding: 20px 15px;
+            border: 2px solid var(--pink-light);
+            border-radius: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .menu-item:hover {
+            border-color: var(--pink-medium);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .menu-item.selected {
+            border-color: var(--pink-main);
+            background: linear-gradient(135deg, var(--pink-light), white);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+
+        .menu-item .menu-icon {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .menu-item .menu-name {
+            font-weight: 600;
+            color: var(--elephant-gray);
+            font-size: 0.9rem;
+            line-height: 1.3;
+        }
+
+        /* Category Tabs */
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .category-tab {
+            padding: 10px 20px;
+            border: none;
+            background: var(--pink-light);
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--pink-dark);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-family: inherit;
+        }
+
+        .category-tab:hover {
+            background: var(--pink-medium);
+            color: white;
+        }
+
+        .category-tab.active {
+            background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
+            color: white;
+        }
+
+        /* Option Selection (Hot/Ice, Size) */
+        .option-section {
+            background: var(--pink-pale);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .option-section h4 {
+            color: var(--pink-dark);
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .option-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .option-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--pink-light);
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--elephant-gray);
+            transition: all 0.3s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option-btn:hover {
+            border-color: var(--pink-medium);
+        }
+
+        .option-btn.selected {
+            border-color: var(--pink-main);
+            background: linear-gradient(135deg, var(--pink-light), white);
+            color: var(--pink-dark);
+            font-weight: 600;
+        }
+
+        .option-btn .option-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Custom Menu Input */
+        .custom-menu-section {
+            background: linear-gradient(135deg, #FFF9C4, #FFFDE7);
+            border: 2px dashed var(--gold-accent);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .custom-menu-section h4 {
+            color: #F57F17;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .custom-menu-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .custom-menu-input input {
+            flex: 1;
+            border-color: var(--gold-accent);
+            background: white;
+        }
+
+        .custom-menu-input input:focus {
+            border-color: #F57F17;
+            box-shadow: 0 0 0 4px rgba(255, 217, 61, 0.2);
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, var(--gold-accent), #FFC107);
+            color: #5D4037;
+            padding: 14px 20px;
+            white-space: nowrap;
+        }
+
+        /* Summary Table */
+        .summary-section {
+            margin-top: 20px;
+        }
+
+        .summary-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .order-table th,
+        .order-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--pink-light);
+        }
+
+        .order-table th {
+            background: linear-gradient(135deg, var(--pink-light), var(--pink-pale));
+            font-weight: 600;
+            color: var(--pink-dark);
+        }
+
+        .order-table tr:hover {
+            background: var(--pink-pale);
+        }
+
+        .order-table .team-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--pink-medium);
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        .order-table .option-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            margin-right: 4px;
+        }
+
+        .order-table .option-badge.hot {
+            background: #FFCDD2;
+            color: #C62828;
+        }
+
+        .order-table .option-badge.ice {
+            background: #B3E5FC;
+            color: #0277BD;
+        }
+
+        .order-table .option-badge.size {
+            background: var(--pink-light);
+            color: var(--pink-dark);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, white, var(--pink-pale));
+            padding: 25px 20px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--pink-light);
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .stat-card .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--pink-dark), var(--pink-main));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.9rem;
+            color: var(--elephant-light);
+            margin-top: 5px;
+        }
+
+        /* Menu Summary */
+        .menu-summary {
+            background: var(--pink-pale);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .menu-summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--pink-light);
+        }
+
+        .menu-summary-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-count {
+            background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
+            color: white;
+            padding: 5px 14px;
+            border-radius: 15px;
+            font-weight: 600;
+        }
+
+        /* Session Info */
+        .session-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
+            color: white;
+            padding: 25px 30px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            box-shadow: 0 10px 30px var(--shadow-dark);
+        }
+
+        .session-info .cafe-logo {
+            font-size: 3rem;
+        }
+
+        .session-info .session-details h3 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .session-info .session-details p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .session-info .session-actions {
+            margin-left: auto;
+        }
+
+        .session-info .btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .session-info .btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        /* Hidden sections */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Team filter */
+        .team-filter {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .team-filter-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--pink-light);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--elephant-light);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .team-filter-btn:hover {
+            border-color: var(--pink-medium);
+            color: var(--pink-main);
+        }
+
+        .team-filter-btn.active {
+            border-color: var(--pink-main);
+            background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
+            color: white;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 14px;
+            background: var(--pink-light);
+            border-radius: 7px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--mint-accent), #3BA99C);
+            border-radius: 7px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--elephant-light);
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 28px;
+            background: linear-gradient(135deg, var(--pink-main), var(--pink-dark));
+            color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--shadow-dark);
+            animation: toastIn 0.4s cubic-bezier(0.4, 0, 0.2, 1), toastOut 0.4s cubic-bezier(0.4, 0, 0.2, 1) 2.6s;
+            z-index: 1000;
+            font-weight: 500;
+        }
+
+        @keyframes toastIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes toastOut {
+            from {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+        }
+
+        /* Option note input */
+        .option-note {
+            margin-top: 15px;
+        }
+
+        .option-note input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--pink-light);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: white;
+        }
+
+        .option-note input:focus {
+            outline: none;
+            border-color: var(--pink-main);
+            box-shadow: 0 0 0 4px rgba(233, 30, 140, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .elephant-logo {
+                width: 90px;
+                height: 90px;
+            }
+
+            .elephant-logo::before {
+                font-size: 45px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .session-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .session-info .session-actions {
+                margin-left: 0;
+            }
+
+            .option-group {
+                justify-content: center;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--pink-light);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--pink-medium);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--pink-main);
+        }
+
+        /* Link style for cafe info */
+        .cafe-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--pink-main);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            transition: color 0.3s;
+        }
+
+        .cafe-link:hover {
+            color: var(--pink-dark);
+            text-decoration: underline;
+        }
+
+        /* Selection summary in order */
+        .selection-summary {
+            background: linear-gradient(135deg, var(--pink-pale), white);
+            border: 2px solid var(--pink-light);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .selection-summary h4 {
+            color: var(--pink-dark);
+            margin-bottom: 15px;
+        }
+
+        .selection-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--pink-light);
+        }
+
+        .selection-item:last-child {
+            border-bottom: none;
+        }
+
+        .selection-label {
+            color: var(--elephant-light);
+        }
+
+        .selection-value {
+            font-weight: 600;
+            color: var(--elephant-gray);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="elephant-logo"></div>
+            </div>
+            <h1>분홍코끼리</h1>
+            <p>전사 & 팀별 티타임 메뉴 수집</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-tab="order">🧋 주문하기</button>
+            <button class="nav-tab" data-tab="admin">⚙️ 세션 관리</button>
+            <button class="nav-tab" data-tab="summary">📊 주문 현황</button>
+        </nav>
+
+        <!-- Order Section -->
+        <section id="order-section" class="tab-content">
+            <div id="no-session-message" class="card">
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 5rem; margin-bottom: 20px;">🐘</div>
+                    <h3 style="color: var(--pink-dark); margin-bottom: 10px;">현재 진행 중인 티타임이 없습니다</h3>
+                    <p style="color: var(--elephant-light);">관리자가 새로운 티타임 세션을 시작하면 주문할 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div id="order-active" class="hidden">
+                <div class="session-info" id="current-session-info">
+                    <div class="cafe-logo">☕</div>
+                    <div class="session-details">
+                        <h3 id="session-cafe-name">카페명</h3>
+                        <p id="session-target">대상: 전체</p>
+                        <a href="#" id="session-cafe-link" class="cafe-link hidden" target="_blank">
+                            📍 카페 정보 보기
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card" id="member-selection-card">
+                    <h3 class="card-title">본인 이름을 선택하세요</h3>
+                    
+                    <div class="team-filter" id="team-filter"></div>
+                    
+                    <div class="member-grid" id="member-grid"></div>
+                </div>
+
+                <div class="card hidden" id="menu-selection-card">
+                    <h3 class="card-title"><span id="selected-member-name"></span>님의 메뉴를 선택하세요</h3>
+                    
+                    <div class="category-tabs" id="category-tabs"></div>
+                    
+                    <div class="menu-grid" id="menu-grid"></div>
+
+                    <!-- Custom Menu Input -->
+                    <div class="custom-menu-section">
+                        <h4>✨ 기타 메뉴 직접 입력</h4>
+                        <p style="font-size: 0.85rem; color: #795548; margin-bottom: 12px;">시즌 메뉴나 목록에 없는 메뉴를 주문하고 싶다면 직접 입력해주세요.</p>
+                        <div class="custom-menu-input">
+                            <input type="text" id="custom-menu-input" placeholder="예: 시즌한정 벚꽃라떼">
+                            <button class="btn btn-custom" onclick="selectCustomMenu()">선택</button>
+                        </div>
+                    </div>
+
+                    <!-- Hot/Ice & Size Options -->
+                    <div class="option-section" id="option-section">
+                        <h4>🌡️ 온도 선택</h4>
+                        <div class="option-group" id="temp-options">
+                            <button class="option-btn selected" data-temp="hot">
+                                <span class="option-icon">🔥</span> HOT
+                            </button>
+                            <button class="option-btn" data-temp="ice">
+                                <span class="option-icon">🧊</span> ICE
+                            </button>
+                        </div>
+
+                        <h4>📏 사이즈 선택</h4>
+                        <div class="option-group" id="size-options">
+                            <button class="option-btn" data-size="S">
+                                <span class="option-icon">S</span> Small
+                            </button>
+                            <button class="option-btn selected" data-size="M">
+                                <span class="option-icon">M</span> Medium
+                            </button>
+                            <button class="option-btn" data-size="L">
+                                <span class="option-icon">L</span> Large
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="option-note">
+                        <input type="text" id="order-note" placeholder="📝 추가 요청사항을 입력하세요 (예: 샷추가, 덜 달게, 휘핑 많이 등)">
+                    </div>
+
+                    <!-- Selection Summary -->
+                    <div class="selection-summary" id="selection-summary" style="display: none;">
+                        <h4>🛒 주문 요약</h4>
+                        <div class="selection-item">
+                            <span class="selection-label">메뉴</span>
+                            <span class="selection-value" id="summary-menu">-</span>
+                        </div>
+                        <div class="selection-item">
+                            <span class="selection-label">온도</span>
+                            <span class="selection-value" id="summary-temp">-</span>
+                        </div>
+                        <div class="selection-item">
+                            <span class="selection-label">사이즈</span>
+                            <span class="selection-value" id="summary-size">-</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 25px; display: flex; gap: 10px; justify-content: flex-end;">
+                        <button class="btn btn-secondary" onclick="cancelOrder()">취소</button>
+                        <button class="btn btn-success" onclick="submitOrder()">✓ 주문 완료</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Section -->
+        <section id="admin-section" class="tab-content hidden">
+            <div class="card">
+                <h3 class="card-title">새 티타임 세션 만들기</h3>
+
+                <div class="form-group">
+                    <label>☕ 카페 선택</label>
+                    <select id="cafe-select">
+                        <option value="">카페를 선택하세요</option>
+                        <option value="smoothien">🥤 스무디앤</option>
+                        <option value="starbucks">⭐ 스타벅스</option>
+                        <option value="twosome">🍰 투썸플레이스</option>
+                        <option value="ediya">🌟 이디야</option>
+                        <option value="mega">🦁 메가커피</option>
+                        <option value="baekdabang">🐤 빽다방</option>
+                        <option value="compose">🎵 컴포즈커피</option>
+                        <option value="hollys">🌿 할리스</option>
+                        <option value="angelinus">😇 엔젤리너스</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>👥 대상 선택</label>
+                    <div class="team-grid" id="target-selection">
+                        <div class="team-option selected" data-target="all">
+                            <div class="team-name">🏢 전사</div>
+                            <div class="member-count">42명</div>
+                        </div>
+                        <div class="team-option" data-target="이사진">
+                            <div class="team-name">👔 이사진</div>
+                            <div class="member-count">5명</div>
+                        </div>
+                        <div class="team-option" data-target="컨설팅팀">
+                            <div class="team-name">💼 컨설팅팀</div>
+                            <div class="member-count">8명</div>
+                        </div>
+                        <div class="team-option" data-target="범용클라우드 사업팀">
+                            <div class="team-name">☁️ 범용클라우드 사업팀</div>
+                            <div class="member-count">7명</div>
+                        </div>
+                        <div class="team-option" data-target="공공클라우드 사업팀">
+                            <div class="team-name">🏛️ 공공클라우드 사업팀</div>
+                            <div class="member-count">6명</div>
+                        </div>
+                        <div class="team-option" data-target="환급/글로벌 사업팀">
+                            <div class="team-name">🌏 환급/글로벌 사업팀</div>
+                            <div class="member-count">4명</div>
+                        </div>
+                        <div class="team-option" data-target="위캔디오팀">
+                            <div class="team-name">🎬 위캔디오팀</div>
+                            <div class="member-count">9명</div>
+                        </div>
+                        <div class="team-option" data-target="UU/UX팀">
+                            <div class="team-name">🎨 UU/UX팀</div>
+                            <div class="member-count">3명</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button class="btn btn-secondary" onclick="resetSession()">초기화</button>
+                    <button class="btn btn-primary" onclick="startSession()">🚀 세션 시작</button>
+                </div>
+            </div>
+
+            <div class="card" id="active-session-card" style="display: none;">
+                <h3 class="card-title">현재 진행 중인 세션</h3>
+                <div id="active-session-details"></div>
+                <div style="margin-top: 20px;">
+                    <button class="btn btn-danger" onclick="endSession()">🛑 세션 종료</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section id="summary-section" class="tab-content hidden">
+            <div id="no-orders-message" class="card">
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 5rem; margin-bottom: 20px;">📋</div>
+                    <h3 style="color: var(--pink-dark); margin-bottom: 10px;">아직 주문이 없습니다</h3>
+                    <p style="color: var(--elephant-light);">티타임 세션이 시작되면 주문 현황을 확인할 수 있습니다.</p>
+                </div>
+            </div>
+
+            <div id="summary-content" class="hidden">
+                <div class="stats-grid" id="stats-grid"></div>
+
+                <div class="card">
+                    <div class="summary-header">
+                        <h3 class="card-title">메뉴별 집계</h3>
+                    </div>
+                    <div class="menu-summary" id="menu-summary"></div>
+                </div>
+
+                <div class="card">
+                    <div class="summary-header">
+                        <h3 class="card-title">주문 상세</h3>
+                        <div>
+                            <button class="btn btn-secondary" onclick="exportOrders()">📥 내보내기</button>
+                        </div>
+                    </div>
+                    
+                    <div class="team-filter" id="summary-team-filter"></div>
+                    
+                    <table class="order-table">
+                        <thead>
+                            <tr>
+                                <th>이름</th>
+                                <th>팀</th>
+                                <th>메뉴</th>
+                                <th>옵션</th>
+                                <th>요청사항</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Company data
+        const teams = {
+            "이사진": ["하근호", "김상철", "김덕조", "김도형", "이호재"],
+            "컨설팅팀": ["양진환", "정대우", "안병훈", "주승운", "박재희", "이우람", "주혜리", "김준한"],
+            "범용클라우드 사업팀": ["최한휘", "조승래", "신혜원", "황보영", "장지예", "오윤환", "권지혜"],
+            "공공클라우드 사업팀": ["나형진", "이명규", "임기돈", "이진화", "이영은", "이예광"],
+            "환급/글로벌 사업팀": ["김서연", "박선미", "이준호", "최한나"],
+            "위캔디오팀": ["이용석", "김규필", "서상민", "김두성", "강태미", "조돈석", "김주영", "김병준", "주윤국"],
+            "UU/UX팀": ["김양현", "강유림", "김경은"]
+        };
+
+        const teamIcons = {
+            "이사진": "👔",
+            "컨설팅팀": "💼",
+            "범용클라우드 사업팀": "☁️",
+            "공공클라우드 사업팀": "🏛️",
+            "환급/글로벌 사업팀": "🌏",
+            "위캔디오팀": "🎬",
+            "UU/UX팀": "🎨"
+        };
+
+        // Cafe menus with sizes
+        const cafeMenus = {
+            smoothien: {
+                name: "스무디앤",
+                icon: "🥤",
+                link: "https://naver.me/5D8a0gLD",
+                sizes: ["M", "L"],
+                defaultSize: "M",
+                categories: {
+                    "커피": [
+                        { name: "에스프레소콘파냐", icon: "☕" },
+                        { name: "아메리카노", icon: "☕" },
+                        { name: "카페라떼", icon: "🥛" },
+                        { name: "카푸치노", icon: "☕" },
+                        { name: "바닐라라떼", icon: "🍦" },
+                        { name: "헤이즐넛라떼", icon: "🌰" },
+                        { name: "돌체라떼", icon: "🍯" },
+                        { name: "카라멜마끼아또", icon: "🍮" },
+                        { name: "카페모카", icon: "🍫" },
+                        { name: "달고나카페라떼", icon: "🍪" }
+                    ],
+                    "티": [
+                        { name: "녹차", icon: "🍵" },
+                        { name: "캐모마일", icon: "🌼" },
+                        { name: "페퍼민트", icon: "🌿" },
+                        { name: "얼그레이 홍차", icon: "🫖" },
+                        { name: "다즐링 홍차", icon: "🫖" },
+                        { name: "유자차", icon: "🍋" },
+                        { name: "모과차", icon: "🍐" },
+                        { name: "생강차", icon: "🫚" },
+                        { name: "대추차", icon: "🫘" },
+                        { name: "레몬차", icon: "🍋" },
+                        { name: "밀크티", icon: "🥛" }
+                    ],
+                    "스무디": [
+                        { name: "딸기스무디", icon: "🍓" },
+                        { name: "망고스무디", icon: "🥭" },
+                        { name: "키위스무디", icon: "🥝" },
+                        { name: "블루베리스무디", icon: "🫐" },
+                        { name: "딸기레몬스무디", icon: "🍓" },
+                        { name: "딸기블루베리스무디", icon: "🍓" },
+                        { name: "그린티스무디", icon: "🍵" },
+                        { name: "플레인요거트스무디", icon: "🥛" }
+                    ],
+                    "쉐이크": [
+                        { name: "밀크쉐이크", icon: "🥛" },
+                        { name: "초코쉐이크", icon: "🍫" },
+                        { name: "모카쉐이크", icon: "☕" },
+                        { name: "오곡쉐이크", icon: "🌾" },
+                        { name: "오레오쉐이크", icon: "🍪" }
+                    ],
+                    "주스&에이드": [
+                        { name: "딸기주스", icon: "🍓" },
+                        { name: "바나나주스", icon: "🍌" },
+                        { name: "딸기바나나주스", icon: "🍓" },
+                        { name: "레몬에이드", icon: "🍋" },
+                        { name: "자몽에이드", icon: "🍊" },
+                        { name: "홍초석류에이드", icon: "🍷" },
+                        { name: "청포도에이드", icon: "🍇" },
+                        { name: "패션후르츠에이드", icon: "🍊" },
+                        { name: "복숭아아이스티", icon: "🍑" }
+                    ],
+                    "라떼": [
+                        { name: "초코라떼", icon: "🍫" },
+                        { name: "녹차라떼", icon: "🍵" },
+                        { name: "고구마라떼", icon: "🍠" },
+                        { name: "달고나라떼", icon: "🍪" }
+                    ]
+                }
+            },
+            starbucks: {
+                name: "스타벅스",
+                icon: "⭐",
+                sizes: ["Tall", "Grande", "Venti"],
+                defaultSize: "Grande",
+                categories: {
+                    "에스프레소": [
+                        { name: "에스프레소", icon: "☕" },
+                        { name: "에스프레소 마키아토", icon: "☕" },
+                        { name: "에스프레소 콘파나", icon: "☕" }
+                    ],
+                    "커피": [
+                        { name: "아메리카노", icon: "☕" },
+                        { name: "카페 라떼", icon: "🥛" },
+                        { name: "카푸치노", icon: "☕" },
+                        { name: "카라멜 마키아또", icon: "🍮" },
+                        { name: "바닐라 라떼", icon: "🍦" },
+                        { name: "카페 모카", icon: "🍫" },
+                        { name: "화이트 초콜릿 모카", icon: "🍫" },
+                        { name: "돌체 라떼", icon: "🍯" },
+                        { name: "콜드 브루", icon: "🧊" },
+                        { name: "나이트로 콜드 브루", icon: "🧊" },
+                        { name: "바닐라 크림 콜드 브루", icon: "🍦" }
+                    ],
+                    "프라푸치노": [
+                        { name: "에스프레소 프라푸치노", icon: "🧊" },
+                        { name: "자바칩 프라푸치노", icon: "🍫" },
+                        { name: "카라멜 프라푸치노", icon: "🍮" },
+                        { name: "모카 프라푸치노", icon: "🍫" },
+                        { name: "녹차 프라푸치노", icon: "🍵" },
+                        { name: "바닐라 크림 프라푸치노", icon: "🍦" }
+                    ],
+                    "티바나": [
+                        { name: "아이스 자몽 허니 블랙티", icon: "🍊" },
+                        { name: "아이스 유자 민트티", icon: "🍋" },
+                        { name: "얼 그레이 티", icon: "🫖" },
+                        { name: "잉글리쉬 브렉퍼스트", icon: "🫖" },
+                        { name: "캐모마일 블렌드", icon: "🌼" },
+                        { name: "민트 블렌드", icon: "🌿" },
+                        { name: "히비스커스 블렌드", icon: "🌺" }
+                    ],
+                    "논커피": [
+                        { name: "말차 라떼", icon: "🍵" },
+                        { name: "스팀 우유", icon: "🥛" },
+                        { name: "초콜릿", icon: "🍫" },
+                        { name: "딸기 딜라이트 요거트", icon: "🍓" }
+                    ]
+                }
+            },
+            twosome: {
+                name: "투썸플레이스",
+                icon: "🍰",
+                sizes: ["R", "L"],
+                defaultSize: "R",
+                categories: {
+                    "커피": [
+                        { name: "아메리카노", icon: "☕" },
+                        { name: "카페 라떼", icon: "🥛" },
+                        { name: "카푸치노", icon: "☕" },
+                        { name: "바닐라 빈 라떼", icon: "🍦" },
+                        { name: "카라멜 마끼아또", icon: "🍮" },
+                        { name: "카페모카", icon: "🍫" },
+                        { name: "돌체라떼", icon: "🍯" },
+                        { name: "헤이즐넛 라떼", icon: "🌰" },
+                        { name: "콜드브루 아메리카노", icon: "🧊" },
+                        { name: "콜드브루 라떼", icon: "🧊" }
+                    ],
+                    "논커피": [
+                        { name: "녹차 라떼", icon: "🍵" },
+                        { name: "초코 라떼", icon: "🍫" },
+                        { name: "리얼 딸기 라떼", icon: "🍓" },
+                        { name: "곡물 라떼", icon: "🌾" },
+                        { name: "밀크티 라떼", icon: "🥛" }
+                    ],
+                    "에이드&티": [
+                        { name: "레몬 에이드", icon: "🍋" },
+                        { name: "자몽 에이드", icon: "🍊" },
+                        { name: "청포도 에이드", icon: "🍇" },
+                        { name: "복숭아 아이스티", icon: "🍑" },
+                        { name: "얼그레이 티", icon: "🫖" },
+                        { name: "캐모마일 티", icon: "🌼" }
+                    ],
+                    "스무디&빙수": [
+                        { name: "딸기 스무디", icon: "🍓" },
+                        { name: "망고 스무디", icon: "🥭" },
+                        { name: "요거트 스무디", icon: "🥛" }
+                    ]
+                }
+            },
+            ediya: {
+                name: "이디야",
+                icon: "🌟",
+                sizes: ["R", "L"],
+                defaultSize: "R",
+                categories: {
+                    "커피": [
+                        { name: "아메리카노", icon: "☕" },
+                        { name: "카페라떼", icon: "🥛" },
+                        { name: "바닐라라떼", icon: "🍦" },
+                        { name: "카라멜 마끼아또", icon: "🍮" },
+                        { name: "카페모카", icon: "🍫" },
+                        { name: "돌체라떼", icon: "🍯" },
+                        { name: "연유라떼", icon: "🥛" },
+                        { name: "콜드브루", icon: "🧊" },
+                        { name: "콜드브루 라떼", icon: "🧊" }
+                    ],
+                    "논커피": [
+                        { name: "녹차 빙수라떼", icon: "🍵" },
+                        { name: "초코라떼", icon: "🍫" },
+                        { name: "토피넛라떼", icon: "🌰" },
+                        { name: "곡물라떼", icon: "🌾" },
+                        { name: "딸기라떼", icon: "🍓" }
+                    ],
+                    "에이드&티": [
+                        { name: "레몬에이드", icon: "🍋" },
+                        { name: "자몽에이드", icon: "🍊" },
+                        { name: "청포도에이드", icon: "🍇" },
+                        { name: "복숭아아이스티", icon: "🍑" },
+                        { name: "캐모마일", icon: "🌼" },
+                        { name: "페퍼민트", icon: "🌿" }
+                    ],
+                    "스무디&빙수": [
+                        { name: "딸기스무디", icon: "🍓" },
+                        { name: "망고스무디", icon: "🥭" },
+                        { name: "플레인요거트스무디", icon: "🥛" }
+                    ]
+                }
+            },
+            mega: {
+                name: "메가커피",
+                icon: "🦁",
+                sizes: ["R", "L"],
+                defaultSize: "L",
+                categories: {
+                    "커피": [
+                        { name: "아메리카노", icon: "☕" },
+                        { name: "카페라떼", icon: "🥛" },
+                        { name: "바닐라라떼", icon: "🍦" },
+                        { name: "카라멜마끼아또", icon: "🍮" },
+                        { name: "카페모카", icon: "🍫" },
+                        { name: "연유라떼", icon: "🥛" },
+                        { name: "헤이즐넛라떼", icon: "🌰" },
+                        { name: "콜드브루 아메리카노", icon: "🧊" },
+                        { name: "콜드브루 라떼", icon: "🧊" }
+                    ],
+                    "논커피": [
+                        { name: "녹차라떼", icon: "🍵" },
+                        { name: "초코라떼", icon: "🍫" },
+                        { name: "딸기라떼", icon: "🍓" },
+                        { name: "고구마라떼", icon: "🍠" },
+                        { name: "흑당라떼", icon: "🍯" }
+                    ],
+                    "에이드&티": [
+                        { name: "레몬에이드", icon: "🍋" },
+                        { name: "자몽에이드", icon: "🍊" },
+                        { name: "청포도에이드", icon: "🍇" },
+                        { name: "복숭아아이스티", icon: "🍑" },
+                        { name: "애플망고에이드", icon: "🥭" }
+                    ],
+                    "스무디": [
+                        { name: "딸기스무디", icon: "🍓" },
+                        { name: "망고스무디", icon: "🥭" },
+                        { name: "플레인요거트스무디", icon: "🥛" }
+                    ]
+                }
+            },
+            baekdabang: {
+                name: "빽다방",
+                icon: "🐤",
+                sizes: ["R", "L"],
+                defaultSize: "R",
+                categories: {
+                    "커피": [
+                        { name: "아메리카노", icon: "☕" },
+                        { name: "원조커피", icon: "☕" },
+                        { name: "달달커피", icon: "☕" },
+                        { name: "카페라떼", icon: "🥛" },
+                        { name: "바닐라라떼", icon: "🍦" },
+                        { name: "카라멜마끼아또", icon: "🍮" },
+                        { name: "연유라떼", icon: "🥛" },
+                        { name: "흑당라떼", icon: "🍯" }
+                    ],
+                    "논커피": [
+                        { name: "녹차라떼", icon: "🍵" },
+                        { name: "초코라떼", icon: "🍫" },
+                        { name: "딸기라떼", icon: "🍓" },
+                        { name: "고구마라떼", icon: "🍠" },
+                        { name: "앙버터라떼", icon: "🫘" },
+                        { name: "밀크티", icon: "🥛" }
+                    ],
+                    "에이드&티": [
+                        { name: "레몬에이드", icon: "🍋" },
+                        { name: "자몽에이드", icon: "🍊" },
+                        { name: "청포도에이드", icon: "🍇" },
+                        { name: "복숭아아이스티", icon: "🍑" },
+                        { name: "얼그레이", icon: "🫖" }
+                    ],
+                    "스무디": [
+                        { name: "딸기스무디", icon: "🍓" },
+                        { name: "망고스무디", icon: "🥭" },
+                        { name: "요거트스무디", icon: "🥛" }
+                    ]
+                }
+            },
+            compose: {
+                name: "컴포즈커피",
+                icon: "🎵",
+                sizes: ["R", "L"],
+                defaultSize: "R",
+                categories: {
+                    "커피": [
+                        { name: "아메리카노", icon: "☕" },
+                        { name: "카페라떼", icon: "🥛" },
+                        { name: "바닐라라떼", icon: "🍦" },
+                        { name: "카라멜마끼아또", icon: "🍮" },
+                        { name: "카페모카", icon: "🍫" },
+                        { name: "연유라떼", icon: "🥛" },
+                        { name: "헤이즐넛라떼", icon: "🌰" },
+                        { name: "콜드브루", icon: "🧊" }
+                    ],
+                    "논커피": [
+                        { name: "녹차라떼", icon: "🍵" },
+                        { name: "초코라떼", icon: "🍫" },
+                        { name: "고구마라떼", icon: "🍠" },
+                        { name: "딸기라떼", icon: "🍓" },
+                        { name: "밀크티", icon: "🥛" }
+                    ],
+                    "에이드": [
+                        { name: "레몬에이드", icon: "🍋" },
+                        { name: "자몽에이드", icon: "🍊" },
+                        { name: "청포도에이드", icon: "🍇" },
+                        { name: "패션후르츠에이드", icon: "🍊" }
+                    ]
+                }
+            },
+            hollys: {
+                name: "할리스",
+                icon: "🌿",
+                sizes: ["R", "L"],
+                defaultSize: "R",
+                categories: {
+                    "커피": [
+                        { name: "아메리카노", icon: "☕" },
+                        { name: "에스프레소", icon: "☕" },
+                        { name: "카페라떼", icon: "🥛" },
+                        { name: "카푸치노", icon: "☕" },
+                        { name: "바닐라라떼", icon: "🍦" },
+                        { name: "카라멜마끼아또", icon: "🍮" },
+                        { name: "카페모카", icon: "🍫" },
+                        { name: "콜드브루", icon: "🧊" }
+                    ],
+                    "논커피": [
+                        { name: "녹차라떼", icon: "🍵" },
+                        { name: "초코라떼", icon: "🍫" },
+                        { name: "고구마라떼", icon: "🍠" },
+                        { name: "밀크티라떼", icon: "🥛" }
+                    ],
+                    "티": [
+                        { name: "얼그레이", icon: "🫖" },
+                        { name: "잉글리쉬 브렉퍼스트", icon: "🫖" },
+                        { name: "캐모마일", icon: "🌼" },
+                        { name: "페퍼민트", icon: "🌿" }
+                    ],
+                    "에이드&빙수": [
+                        { name: "레몬에이드", icon: "🍋" },
+                        { name: "자몽에이드", icon: "🍊" },
+                        { name: "딸기스무디", icon: "🍓" },
+                        { name: "망고스무디", icon: "🥭" }
+                    ]
+                }
+            },
+            angelinus: {
+                name: "엔젤리너스",
+                icon: "😇",
+                sizes: ["R", "L"],
+                defaultSize: "R",
+                categories: {
+                    "커피": [
+                        { name: "아메리카노", icon: "☕" },
+                        { name: "카페라떼", icon: "🥛" },
+                        { name: "카푸치노", icon: "☕" },
+                        { name: "바닐라라떼", icon: "🍦" },
+                        { name: "카라멜마끼아또", icon: "🍮" },
+                        { name: "카페모카", icon: "🍫" },
+                        { name: "헤이즐넛라떼", icon: "🌰" },
+                        { name: "콜드브루", icon: "🧊" }
+                    ],
+                    "논커피": [
+                        { name: "녹차라떼", icon: "🍵" },
+                        { name: "초코라떼", icon: "🍫" },
+                        { name: "고구마라떼", icon: "🍠" },
+                        { name: "딸기라떼", icon: "🍓" }
+                    ],
+                    "에이드&티": [
+                        { name: "레몬에이드", icon: "🍋" },
+                        { name: "자몽에이드", icon: "🍊" },
+                        { name: "청포도에이드", icon: "🍇" },
+                        { name: "캐모마일", icon: "🌼" },
+                        { name: "얼그레이", icon: "🫖" }
+                    ]
+                }
+            }
+        };
+
+        // State
+        let currentSession = null;
+        let orders = [];
+        let selectedMember = null;
+        let selectedMenu = null;
+        let selectedTemp = 'hot';
+        let selectedSize = 'M';
+        let currentCategory = null;
+        let currentTeamFilter = 'all';
+        let summaryTeamFilter = 'all';
+
+        // Initialize
+        function init() {
+            loadState();
+            setupEventListeners();
+            updateUI();
+        }
+
+        // Load state from localStorage
+        function loadState() {
+            const savedSession = localStorage.getItem('pinkElephantSession');
+            const savedOrders = localStorage.getItem('pinkElephantOrders');
+            
+            if (savedSession) {
+                currentSession = JSON.parse(savedSession);
+            }
+            if (savedOrders) {
+                orders = JSON.parse(savedOrders);
+            }
+        }
+
+        // Save state to localStorage
+        function saveState() {
+            localStorage.setItem('pinkElephantSession', JSON.stringify(currentSession));
+            localStorage.setItem('pinkElephantOrders', JSON.stringify(orders));
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Tab navigation
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    const targetId = tab.dataset.tab + '-section';
+                    document.getElementById(targetId).classList.remove('hidden');
+                    
+                    if (tab.dataset.tab === 'summary') {
+                        updateSummary();
+                    }
+                });
+            });
+
+            // Target selection in admin
+            document.querySelectorAll('#target-selection .team-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    document.querySelectorAll('#target-selection .team-option').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+                });
+            });
+
+            // Temperature options
+            document.querySelectorAll('#temp-options .option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#temp-options .option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    selectedTemp = btn.dataset.temp;
+                    updateSelectionSummary();
+                });
+            });
+
+            // Size options
+            document.querySelectorAll('#size-options .option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('#size-options .option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    selectedSize = btn.dataset.size;
+                    updateSelectionSummary();
+                });
+            });
+        }
+
+        // Update UI based on state
+        function updateUI() {
+            updateOrderSection();
+            updateAdminSection();
+            updateSummary();
+        }
+
+        // Update order section
+        function updateOrderSection() {
+            if (!currentSession) {
+                document.getElementById('no-session-message').classList.remove('hidden');
+                document.getElementById('order-active').classList.add('hidden');
+                return;
+            }
+
+            document.getElementById('no-session-message').classList.add('hidden');
+            document.getElementById('order-active').classList.remove('hidden');
+
+            const cafe = cafeMenus[currentSession.cafe];
+            document.getElementById('session-cafe-name').textContent = cafe.icon + ' ' + cafe.name;
+            document.getElementById('session-target').textContent = 
+                currentSession.target === 'all' ? '대상: 전사 (42명)' : `대상: ${currentSession.target}`;
+
+            // Show cafe link if available
+            const cafeLink = document.getElementById('session-cafe-link');
+            if (cafe.link) {
+                cafeLink.href = cafe.link;
+                cafeLink.classList.remove('hidden');
+            } else {
+                cafeLink.classList.add('hidden');
+            }
+
+            updateTeamFilter();
+            updateMemberGrid();
+        }
+
+        // Update team filter
+        function updateTeamFilter() {
+            const filterContainer = document.getElementById('team-filter');
+            filterContainer.innerHTML = '';
+
+            const allBtn = document.createElement('button');
+            allBtn.className = 'team-filter-btn' + (currentTeamFilter === 'all' ? ' active' : '');
+            allBtn.textContent = '전체';
+            allBtn.onclick = () => {
+                currentTeamFilter = 'all';
+                updateTeamFilter();
+                updateMemberGrid();
+            };
+            filterContainer.appendChild(allBtn);
+
+            const teamsToShow = currentSession.target === 'all' ? Object.keys(teams) : [currentSession.target];
+            
+            teamsToShow.forEach(team => {
+                const btn = document.createElement('button');
+                btn.className = 'team-filter-btn' + (currentTeamFilter === team ? ' active' : '');
+                btn.textContent = team;
+                btn.onclick = () => {
+                    currentTeamFilter = team;
+                    updateTeamFilter();
+                    updateMemberGrid();
+                };
+                filterContainer.appendChild(btn);
+            });
+        }
+
+        // Update member grid
+        function updateMemberGrid() {
+            const grid = document.getElementById('member-grid');
+            grid.innerHTML = '';
+
+            const teamsToShow = currentSession.target === 'all' ? Object.keys(teams) : [currentSession.target];
+            
+            teamsToShow.forEach(team => {
+                if (currentTeamFilter !== 'all' && currentTeamFilter !== team) return;
+                
+                teams[team].forEach(member => {
+                    const hasOrdered = orders.some(o => o.member === member);
+                    
+                    const card = document.createElement('div');
+                    card.className = 'member-card' + (hasOrdered ? ' ordered' : '') + 
+                                   (selectedMember === member ? ' selected' : '');
+                    card.innerHTML = `
+                        <div class="member-name">${member}</div>
+                        <div class="member-team">${teamIcons[team]} ${team}</div>
+                        <div class="order-status ${hasOrdered ? 'complete' : 'pending'}">
+                            ${hasOrdered ? '✓ 주문완료' : '대기중'}
+                        </div>
+                    `;
+                    card.onclick = () => selectMember(member, team);
+                    grid.appendChild(card);
+                });
+            });
+        }
+
+        // Select member
+        function selectMember(member, team) {
+            selectedMember = { name: member, team: team };
+            selectedMenu = null;
+            selectedTemp = 'hot';
+            
+            const cafe = cafeMenus[currentSession.cafe];
+            selectedSize = cafe.defaultSize || cafe.sizes[0];
+            
+            // Reset temp options
+            document.querySelectorAll('#temp-options .option-btn').forEach(b => b.classList.remove('selected'));
+            document.querySelector('#temp-options .option-btn[data-temp="hot"]').classList.add('selected');
+            
+            // Update size options based on cafe
+            updateSizeOptions(cafe);
+            
+            document.getElementById('member-selection-card').classList.add('hidden');
+            document.getElementById('menu-selection-card').classList.remove('hidden');
+            document.getElementById('selected-member-name').textContent = member;
+            document.getElementById('order-note').value = '';
+            document.getElementById('custom-menu-input').value = '';
+            document.getElementById('selection-summary').style.display = 'none';
+            
+            const categories = Object.keys(cafe.categories);
+            currentCategory = categories[0];
+            
+            updateCategoryTabs(categories);
+            updateMenuGrid();
+        }
+
+        // Update size options based on cafe
+        function updateSizeOptions(cafe) {
+            const sizeContainer = document.getElementById('size-options');
+            const sizes = cafe.sizes || ['S', 'M', 'L'];
+            const defaultSize = cafe.defaultSize || sizes[Math.floor(sizes.length / 2)];
+            
+            const sizeLabels = {
+                'S': 'Small',
+                'M': 'Medium',
+                'L': 'Large',
+                'R': 'Regular',
+                'Tall': 'Tall',
+                'Grande': 'Grande',
+                'Venti': 'Venti'
+            };
+            
+            sizeContainer.innerHTML = sizes.map(size => `
+                <button class="option-btn${size === defaultSize ? ' selected' : ''}" data-size="${size}">
+                    <span class="option-icon">${size}</span> ${sizeLabels[size] || size}
+                </button>
+            `).join('');
+            
+            // Re-attach event listeners
+            sizeContainer.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    sizeContainer.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    selectedSize = btn.dataset.size;
+                    updateSelectionSummary();
+                });
+            });
+        }
+
+        // Update category tabs
+        function updateCategoryTabs(categories) {
+            const tabs = document.getElementById('category-tabs');
+            tabs.innerHTML = '';
+            
+            categories.forEach(category => {
+                const tab = document.createElement('button');
+                tab.className = 'category-tab' + (currentCategory === category ? ' active' : '');
+                tab.textContent = category;
+                tab.onclick = () => {
+                    currentCategory = category;
+                    updateCategoryTabs(categories);
+                    updateMenuGrid();
+                };
+                tabs.appendChild(tab);
+            });
+        }
+
+        // Update menu grid
+        function updateMenuGrid() {
+            const grid = document.getElementById('menu-grid');
+            grid.innerHTML = '';
+            
+            const cafe = cafeMenus[currentSession.cafe];
+            const items = cafe.categories[currentCategory];
+            
+            items.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item' + (selectedMenu?.name === item.name && !selectedMenu?.isCustom ? ' selected' : '');
+                menuItem.innerHTML = `
+                    <div class="menu-icon">${item.icon}</div>
+                    <div class="menu-name">${item.name}</div>
+                `;
+                menuItem.onclick = () => {
+                    selectedMenu = { name: item.name, icon: item.icon, isCustom: false };
+                    document.getElementById('custom-menu-input').value = '';
+                    updateMenuGrid();
+                    updateSelectionSummary();
+                };
+                grid.appendChild(menuItem);
+            });
+        }
+
+        // Select custom menu
+        function selectCustomMenu() {
+            const customInput = document.getElementById('custom-menu-input').value.trim();
+            if (!customInput) {
+                showToast('메뉴명을 입력해주세요');
+                return;
+            }
+            
+            selectedMenu = { name: customInput, icon: '✨', isCustom: true };
+            updateMenuGrid();
+            updateSelectionSummary();
+            showToast(`'${customInput}' 메뉴가 선택되었습니다`);
+        }
+
+        // Update selection summary
+        function updateSelectionSummary() {
+            if (selectedMenu) {
+                const sizeLabels = {
+                    'S': 'Small',
+                    'M': 'Medium',
+                    'L': 'Large',
+                    'R': 'Regular',
+                    'Tall': 'Tall',
+                    'Grande': 'Grande',
+                    'Venti': 'Venti'
+                };
+                
+                document.getElementById('selection-summary').style.display = 'block';
+                document.getElementById('summary-menu').textContent = 
+                    (selectedMenu.isCustom ? '✨ ' : '') + selectedMenu.name;
+                document.getElementById('summary-temp').textContent = 
+                    selectedTemp === 'hot' ? '🔥 HOT' : '🧊 ICE';
+                document.getElementById('summary-size').textContent = 
+                    sizeLabels[selectedSize] || selectedSize;
+            }
+        }
+
+        // Cancel order
+        function cancelOrder() {
+            selectedMember = null;
+            selectedMenu = null;
+            document.getElementById('member-selection-card').classList.remove('hidden');
+            document.getElementById('menu-selection-card').classList.add('hidden');
+            updateMemberGrid();
+        }
+
+        // Submit order
+        function submitOrder() {
+            if (!selectedMenu) {
+                showToast('메뉴를 선택해주세요');
+                return;
+            }
+
+            // Remove existing order for this member
+            orders = orders.filter(o => o.member !== selectedMember.name);
+            
+            const note = document.getElementById('order-note').value.trim();
+            
+            orders.push({
+                member: selectedMember.name,
+                team: selectedMember.team,
+                menu: selectedMenu.name,
+                isCustomMenu: selectedMenu.isCustom || false,
+                temp: selectedTemp,
+                size: selectedSize,
+                note: note,
+                timestamp: new Date().toISOString()
+            });
+            
+            saveState();
+            showToast(`${selectedMember.name}님의 주문이 완료되었습니다`);
+            
+            selectedMember = null;
+            selectedMenu = null;
+            document.getElementById('member-selection-card').classList.remove('hidden');
+            document.getElementById('menu-selection-card').classList.add('hidden');
+            updateMemberGrid();
+        }
+
+        // Admin functions
+        function startSession() {
+            const cafeSelect = document.getElementById('cafe-select');
+            const selectedTarget = document.querySelector('#target-selection .team-option.selected');
+            
+            if (!cafeSelect.value) {
+                showToast('카페를 선택해주세요');
+                return;
+            }
+            
+            currentSession = {
+                cafe: cafeSelect.value,
+                target: selectedTarget.dataset.target,
+                startTime: new Date().toISOString()
+            };
+            
+            orders = [];
+            saveState();
+            updateUI();
+            showToast('🐘 티타임 세션이 시작되었습니다!');
+            
+            // Switch to order tab
+            document.querySelector('.nav-tab[data-tab="order"]').click();
+        }
+
+        function resetSession() {
+            document.getElementById('cafe-select').value = '';
+            document.querySelectorAll('#target-selection .team-option').forEach(o => o.classList.remove('selected'));
+            document.querySelector('#target-selection .team-option[data-target="all"]').classList.add('selected');
+        }
+
+        function endSession() {
+            if (confirm('세션을 종료하시겠습니까? 주문 기록은 유지됩니다.')) {
+                currentSession = null;
+                saveState();
+                updateUI();
+                showToast('세션이 종료되었습니다');
+            }
+        }
+
+        function updateAdminSection() {
+            const activeCard = document.getElementById('active-session-card');
+            
+            if (currentSession) {
+                activeCard.style.display = 'block';
+                const cafe = cafeMenus[currentSession.cafe];
+                const targetText = currentSession.target === 'all' ? '전사' : currentSession.target;
+                
+                document.getElementById('active-session-details').innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                        <span style="font-size: 2.5rem;">${cafe.icon}</span>
+                        <div>
+                            <h4 style="margin-bottom: 5px; color: var(--pink-dark);">${cafe.name}</h4>
+                            <p style="color: var(--elephant-light);">대상: ${targetText}</p>
+                            ${cafe.link ? `<a href="${cafe.link}" target="_blank" class="cafe-link">📍 카페 정보</a>` : ''}
+                        </div>
+                    </div>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${getOrderProgress()}%"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span>주문 완료: ${orders.length}명</span>
+                            <span>${getOrderProgress().toFixed(0)}%</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                activeCard.style.display = 'none';
+            }
+        }
+
+        function getOrderProgress() {
+            if (!currentSession) return 0;
+            const totalMembers = currentSession.target === 'all' 
+                ? 42 
+                : teams[currentSession.target].length;
+            return (orders.length / totalMembers) * 100;
+        }
+
+        // Summary functions
+        function updateSummary() {
+            if (orders.length === 0) {
+                document.getElementById('no-orders-message').classList.remove('hidden');
+                document.getElementById('summary-content').classList.add('hidden');
+                return;
+            }
+
+            document.getElementById('no-orders-message').classList.add('hidden');
+            document.getElementById('summary-content').classList.remove('hidden');
+
+            updateStats();
+            updateMenuSummary();
+            updateSummaryTeamFilter();
+            updateOrderTable();
+        }
+
+        function updateStats() {
+            document.getElementById('stats-grid').innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${orders.length}</div>
+                    <div class="stat-label">주문 완료</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${orders.filter(o => o.temp === 'hot').length}</div>
+                    <div class="stat-label">🔥 HOT</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${orders.filter(o => o.temp === 'ice').length}</div>
+                    <div class="stat-label">🧊 ICE</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${getOrderProgress().toFixed(0)}%</div>
+                    <div class="stat-label">참여율</div>
+                </div>
+            `;
+        }
+
+        function updateMenuSummary() {
+            const menuCount = {};
+            orders.forEach(o => {
+                const tempText = o.temp === 'hot' ? 'HOT' : 'ICE';
+                const key = `${o.menu} (${tempText}, ${o.size})`;
+                if (!menuCount[key]) {
+                    menuCount[key] = 0;
+                }
+                menuCount[key]++;
+            });
+
+            const sorted = Object.entries(menuCount).sort((a, b) => b[1] - a[1]);
+            
+            document.getElementById('menu-summary').innerHTML = sorted.map(([menu, count]) => `
+                <div class="menu-summary-item">
+                    <span>${menu}</span>
+                    <span class="menu-count">${count}잔</span>
+                </div>
+            `).join('');
+        }
+
+        function updateSummaryTeamFilter() {
+            const filterContainer = document.getElementById('summary-team-filter');
+            filterContainer.innerHTML = '';
+
+            const allBtn = document.createElement('button');
+            allBtn.className = 'team-filter-btn' + (summaryTeamFilter === 'all' ? ' active' : '');
+            allBtn.textContent = '전체';
+            allBtn.onclick = () => {
+                summaryTeamFilter = 'all';
+                updateSummaryTeamFilter();
+                updateOrderTable();
+            };
+            filterContainer.appendChild(allBtn);
+
+            Object.keys(teams).forEach(team => {
+                const btn = document.createElement('button');
+                btn.className = 'team-filter-btn' + (summaryTeamFilter === team ? ' active' : '');
+                btn.textContent = team;
+                btn.onclick = () => {
+                    summaryTeamFilter = team;
+                    updateSummaryTeamFilter();
+                    updateOrderTable();
+                };
+                filterContainer.appendChild(btn);
+            });
+        }
+
+        function updateOrderTable() {
+            const filtered = summaryTeamFilter === 'all' 
+                ? orders 
+                : orders.filter(o => o.team === summaryTeamFilter);
+
+            document.getElementById('order-table-body').innerHTML = filtered.map(order => `
+                <tr>
+                    <td><strong>${order.member}</strong></td>
+                    <td><span class="team-badge">${teamIcons[order.team]} ${order.team}</span></td>
+                    <td>${order.isCustomMenu ? '✨ ' : ''}${order.menu}</td>
+                    <td>
+                        <span class="option-badge ${order.temp}">${order.temp === 'hot' ? '🔥 HOT' : '🧊 ICE'}</span>
+                        <span class="option-badge size">${order.size}</span>
+                    </td>
+                    <td>${order.note || '-'}</td>
+                </tr>
+            `).join('');
+        }
+
+        function exportOrders() {
+            if (orders.length === 0) {
+                showToast('내보낼 주문이 없습니다');
+                return;
+            }
+
+            // Create summary text
+            let text = '🐘 분홍코끼리 티타임 주문 현황\n';
+            text += '='.repeat(40) + '\n\n';
+            
+            if (currentSession) {
+                const cafe = cafeMenus[currentSession.cafe];
+                text += `카페: ${cafe.name}\n`;
+                if (cafe.link) {
+                    text += `카페 정보: ${cafe.link}\n`;
+                }
+                text += `대상: ${currentSession.target === 'all' ? '전사' : currentSession.target}\n\n`;
+            }
+
+            // Menu summary
+            const menuCount = {};
+            orders.forEach(o => {
+                const key = `${o.menu} (${o.temp === 'hot' ? 'HOT' : 'ICE'}, ${o.size})`;
+                if (!menuCount[key]) {
+                    menuCount[key] = 0;
+                }
+                menuCount[key]++;
+            });
+
+            text += '📋 메뉴별 집계\n';
+            text += '-'.repeat(30) + '\n';
+            Object.entries(menuCount).sort((a, b) => b[1] - a[1]).forEach(([menu, count]) => {
+                text += `${menu}: ${count}잔\n`;
+            });
+
+            text += '\n📝 상세 주문\n';
+            text += '-'.repeat(30) + '\n';
+            
+            // Group by team
+            const byTeam = {};
+            orders.forEach(o => {
+                if (!byTeam[o.team]) byTeam[o.team] = [];
+                byTeam[o.team].push(o);
+            });
+
+            Object.entries(byTeam).forEach(([team, teamOrders]) => {
+                text += `\n[${team}]\n`;
+                teamOrders.forEach(o => {
+                    const tempText = o.temp === 'hot' ? 'HOT' : 'ICE';
+                    const customMark = o.isCustomMenu ? '✨' : '';
+                    text += `  ${o.member}: ${customMark}${o.menu} (${tempText}, ${o.size})${o.note ? ` - ${o.note}` : ''}\n`;
+                });
+            });
+
+            text += '\n' + '='.repeat(40) + '\n';
+            text += `총 ${orders.length}명 (HOT: ${orders.filter(o => o.temp === 'hot').length}, ICE: ${orders.filter(o => o.temp === 'ice').length})`;
+
+            // Copy to clipboard
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('📋 클립보드에 복사되었습니다!');
+            }).catch(() => {
+                // Fallback for older browsers
+                const blob = new Blob([text], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'pink-elephant-orders.txt';
+                a.click();
+                URL.revokeObjectURL(url);
+                showToast('파일이 다운로드되었습니다');
+            });
+        }
+
+        // Toast notification
+        function showToast(message) {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Initialize on load
+        init();
+    </script>
+</body>
+</html>
